@@ -1,88 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Keyboard Counter</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔢</text></svg>">
+    <title>K Counter</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: transparent;
+            font-family: monospace;
+        }
+        
+        #counter {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            font-size: 48px;
+            color: white;
+            text-shadow: 0 0 10px black, 0 0 5px black;
+            z-index: 9999;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-keyboard"></i> Keyboard Counter</h1>
-            <p class="subtitle">Press any key to increase the counter!</p>
-        </header>
-
-        <main>
-            <div class="counter-card">
-                <div class="counter-display">
-                    <span id="counter-value">0</span>
-                </div>
-                <div class="counter-info">
-                    <div class="info-item">
-                        <i class="fas fa-clock"></i>
-                        <span>Last pressed: <span id="last-key">None</span></span>
-                    </div>
-                    <div class="info-item">
-                        <i class="fas fa-bolt"></i>
-                        <span>Total presses: <span id="total-presses">0</span></span>
-                    </div>
-                </div>
-                <div class="instructions">
-                    <h3><i class="fas fa-info-circle"></i> How to use</h3>
-                    <p>Simply press any key on your keyboard to increase the counter. Try different keys!</p>
-                    <div class="key-examples">
-                        <div class="key-example">A</div>
-                        <div class="key-example">Space</div>
-                        <div class="key-example">Enter</div>
-                        <div class="key-example">1</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="controls">
-                <button id="reset-btn" class="btn reset-btn">
-                    <i class="fas fa-redo"></i> Reset Counter
-                </button>
-                <button id="auto-clicker" class="btn auto-btn">
-                    <i class="fas fa-robot"></i> Auto-click (Press 'A')
-                </button>
-                <button id="sound-toggle" class="btn sound-btn">
-                    <i class="fas fa-volume-up"></i> Toggle Sound
-                </button>
-            </div>
-
-            <div class="stats">
-                <div class="stat-card">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>Speed</h3>
-                    <p id="press-rate">0/min</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-history"></i>
-                    <h3>Session Time</h3>
-                    <p id="session-time">0s</p>
-                </div>
-                <div class="stat-card">
-                    <i class="fas fa-calendar-day"></i>
-                    <h3>Today</h3>
-                    <p id="today-count">0</p>
-                </div>
-            </div>
-        </main>
-
-        <footer>
-            <p>Created with <i class="fas fa-heart"></i> by GitHub Community</p>
-            <p class="hint">Hint: Press the Spacebar for rapid counting!</p>
-        </footer>
-    </div>
-
-    <!-- Audio element for click sound -->
-    <audio id="click-sound" src="https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3" preload="auto"></audio>
+    <div id="counter">0</div>
     
-    <script src="script.js"></script>
+    <script>
+        let count = 0;
+        const counter = document.getElementById('counter');
+        
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'k' || e.key === 'K') {
+                count++;
+                counter.textContent = count;
+                
+                // Small animation
+                counter.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    counter.style.transform = 'scale(1)';
+                }, 100);
+            }
+        });
+    </script>
 </body>
 </html>
